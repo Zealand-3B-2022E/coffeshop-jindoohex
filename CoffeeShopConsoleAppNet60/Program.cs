@@ -6,5 +6,12 @@ using CoffeeShopConsoleAppNet60;
 CoffeeWorker theWorker = new CoffeeWorker();
 theWorker.Start();
 
-Console.WriteLine("\nPress any key to close the program...");
-Console.ReadKey();
+Console.WriteLine();
+Console.WriteLine($"" + "Press any key to close the program");
+
+// The program will close on specified key input
+Console.ReadKey(true);
+
+Console.WriteLine();
+Console.WriteLine("The program will close shortly");
+Thread.Sleep(3000);

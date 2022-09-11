@@ -17,6 +17,10 @@ namespace CoffeeShopConsoleAppNet60.Model
             this.coffeeBlend = coffeeIsBlended;
         }
 
+        public Espresso()
+        {
+
+        }
         public Espresso(int discount)
             :base(discount)
         {

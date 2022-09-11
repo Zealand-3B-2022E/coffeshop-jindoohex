@@ -16,6 +16,10 @@ namespace CoffeeShopConsoleAppNet60.Model
             this.coffeeBlend = coffeeIsBlended;
         }
 
+        public IcedCoffee()
+        {
+
+        }
         public IcedCoffee(int discount)
             :base(discount)
         {
@@ -34,7 +38,7 @@ namespace CoffeeShopConsoleAppNet60.Model
 
         public override string CoffeeType()
         {
-            return "Iced Coffee, dobule brewed";
+            return "Iced Coffee";
         }
 
         public override string Strength()
