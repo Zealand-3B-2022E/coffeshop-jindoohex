@@ -7,34 +7,44 @@ using System.Threading.Tasks;
 
 namespace CoffeeShopConsoleAppNet60.Model
 {
-    public class Cortado : Coffee, IMilk
+    public class IcedCoffee : Coffee, IMilk, ICoffeeBlend
     {
-        public Cortado()
+        private string coffeeBlend;
+        public IcedCoffee(string coffeeIsBlended)
             :base()
         {
-
+            this.coffeeBlend = coffeeIsBlended;
         }
-        public Cortado(int discount)
+
+        public IcedCoffee(int discount)
             :base(discount)
         {
 
         }
+
         public override int CoffeePrice()
         {
             return 25 - base.Discount;
         }
+
         public int MlMilk()
         {
-            return 40;
+            return 25;
         }
+
         public override string CoffeeType()
         {
-            return "Cortado";
+            return "Iced Coffee, dobule brewed";
         }
 
         public override string Strength()
         {
             return "Medium";
+        }
+
+        public string CoffeeBlend()
+        {
+            return coffeeBlend;
         }
     }
 }

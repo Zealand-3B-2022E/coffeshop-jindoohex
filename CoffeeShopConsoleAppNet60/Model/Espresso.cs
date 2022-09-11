@@ -1,40 +1,46 @@
 ﻿using CoffeeShopConsoleAppNet60.Service;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CoffeeShopConsoleAppNet60.Model
 {
-    public class Cortado : Coffee, IMilk
+    public class Espresso : Coffee, ICoffeeBlend
     {
-        public Cortado()
+        private string coffeeBlend;
+        public Espresso(string coffeeIsBlended)
             :base()
         {
-
+            this.coffeeBlend = coffeeIsBlended;
         }
-        public Cortado(int discount)
+
+        public Espresso(int discount)
             :base(discount)
         {
 
         }
+
         public override int CoffeePrice()
         {
-            return 25 - base.Discount;
+            return 20;
         }
-        public int MlMilk()
-        {
-            return 40;
-        }
+
         public override string CoffeeType()
         {
-            return "Cortado";
+            return "Espresso";
         }
 
         public override string Strength()
         {
-            return "Medium";
+            return "Incredibly strong";
+        }
+
+        public string CoffeeBlend()
+        {
+            return coffeeBlend;
         }
     }
 }
