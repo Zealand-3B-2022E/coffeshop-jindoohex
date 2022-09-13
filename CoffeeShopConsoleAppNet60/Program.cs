@@ -8,10 +8,12 @@ theWorker.Start();
 
 Console.WriteLine();
 Console.WriteLine($"" + "Press any key to close the program");
+Console.WriteLine();
 
 // The program will close on specified key input
 Console.ReadKey(true);
 
 Console.WriteLine();
 Console.WriteLine("The program will close shortly");
+Console.WriteLine();
 Thread.Sleep(3000);

@@ -7,7 +7,7 @@ namespace CoffeeShopConsoleAppNet60
 {
     public class CoffeeWorker
     {
-
+        public List<Coffee> selectedCoffees = new List<Coffee>();
         public void Start()
         {
             Console.WriteLine();
@@ -17,8 +17,6 @@ namespace CoffeeShopConsoleAppNet60
             {
                 Console.WriteLine(coffeeItem.ToString());
 
-
-
                 if (coffeeItem is IMilk)
                 {
                     IMilk cItem = coffeeItem as IMilk;
@@ -26,11 +24,9 @@ namespace CoffeeShopConsoleAppNet60
                 }
                 else
                 {
-                    Console.WriteLine($"Milk:\t\tNONE");
+                    Console.WriteLine($"Milk:\t\t#################");
                 }
-
                 Console.WriteLine("---------------------------------");
-
             }
 
             var CoffeeWithMilk = new List<IMilk>()
@@ -46,13 +42,11 @@ namespace CoffeeShopConsoleAppNet60
                 Console.WriteLine("Welcome to the Coffee Shop.\n");
                 Console.WriteLine("Press the coffee number to add it to your order.");
                 Console.WriteLine();
+                Console.WriteLine("1. Black Coffee\n2. Cortado\n3. Espresso\n4. Iced Coffee\n5. Latte\n\n7. Current Order\n\n9. Confirm and Purchase\n");
 
                 Random random = new Random();
-                List<Coffee> orderCoffeeList = new List<Coffee>();
 
-                Order o = new Order(1, 11, "Bent", "Helge", true,  orderCoffeeList);
-
-                Console.WriteLine("1. Black Coffee\n2. Cortado\n3. Espresso\n4. Iced Coffee\n5. Latte\n\n7. Current Order\n\n9. Confirm and Purchase\n");
+                Order o = new Order(1, 11, "Bent", "Helge", true, selectedCoffees);
 
                 char input = Console.ReadKey().KeyChar;
 
@@ -63,16 +57,22 @@ namespace CoffeeShopConsoleAppNet60
 
                         case '1':
                             Console.Clear();
+                            Console.WriteLine();
                             Console.WriteLine($"Do you want to add Black Coffee to your order?");
                             Console.WriteLine($"1. Yes");
                             Console.WriteLine($"2. No");
 
                             char userInput = Console.ReadKey().KeyChar;
+                            //if (userInput == '1')
+                            //{
+                            //    o.AddMenuItem(new BlackCoffee(new Random().Next(1, 5)));
+                            //}
 
                             switch (userInput)
                             {
                                 case '1':
-                                    o.AddMenuItem(new BlackCoffee(new Random().Next(1,5)));
+                                    o.AddMenuItem(new BlackCoffee(new Random().Next(1, 5)));
+                                    Console.Clear();
                                     break;
 
                                 case '2':
@@ -83,26 +83,34 @@ namespace CoffeeShopConsoleAppNet60
                                     Console.WriteLine("Invalid input.");
                                     break;
                             }
-                            Console.Clear();
                             break;
 
 
                         case '7':
                             Console.Clear();
                             Console.WriteLine();
-                            foreach (Coffee coffee in orderCoffeeList)
+                            Console.WriteLine($"Current Order List");
+                            Console.WriteLine();
+
+                            foreach (var coffee in selectedCoffees)
                             {
-                                Console.WriteLine(coffee.CoffeeType() + coffee.CoffeePrice());
+                                Console.WriteLine(coffee.ToString() + "\n-------------------------------");
                             }
+
                             break;
 
 
                         case '9':
                             Console.Clear();
-                            foreach (var coffee in orderCoffeeList)
-                            {
-                                Console.WriteLine(o.OrderID + o.TableID + o.BaristaOrder + o.CustomerName + o.TakeAway + o.ItemCount(), "\n-----------------------------\n");
-                            }
+                            Console.WriteLine();
+                            Console.WriteLine(
+                                $"OrderID:\t\t{o.OrderID}\n" +
+                                $"TableID:\t\t{o.TableID}\n" +
+                                $"Barista:\t\t{o.BaristaOrder}\n" +
+                                $"Customer:\t\t{o.CustomerName}\n" +
+                                $"Take Away:\t\t{o.TakeAway}\n" +
+                                $"Total Amount:\t\t{o.ItemCount()}\n" +
+                                $"-------------------------------\n");
                             return;
 
                         //case (char)ConsoleKey.Escape:
